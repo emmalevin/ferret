@@ -1,0 +1,40 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f0\fs22 \cf0 \CocoaLigature0 use "/archive/hnm/CM2.5_anal/JRA55/pp/ocean/ts/annual/20yr_1x1/ocean.195801-201712.sstanm_glob_smean.nc"\
+\
+show data\
+\
+# set desired region to NA ocean\
+set region/x=140W:0W/y=0:45N\
+\
+# get AMO+ years from dataset \
+let sst_amo = SAMPLEL(TEMP_JASO, \{3, 41, 46, 47, 48, 49, 53, 55, 56, 57, 58\})\
+\
+# map 2017 SST - Average of AMO+years \
+shade TEMP_JASO[l=60] - sst_amo[l=@ave]\
+\
+go land\
+\
+#shade w/ new color scheme\
+shade/levels=(-1.9, 1, .1)/palette=cmwyk_work TEMP_JASO[l=60] - sst_amo[l=@ave]\
+go land\
+\
+shade/levels=(-.7, 1, .05)//palette=cmwyk_work TEMP_JASO[l=60] - sst_amo[l=@ave]\
+go land\
+\
+# 2017 - amo+ and most recent decade \
+shade TEMP_JASO[l=60] - sst_amo[l=@ave]\
+ shade TEMP_JASO[l=60] - TEMP_JASO[l=49:59@ave]\
+go land\
+\
+# \'93\'94 w/new color scheme \
+shade/levels=(-1.8, 1, .1)/palette=cmwyk_work shade TEMP_JASO[l=60] - TEMP_JASO[l=49:59@ave]\
+shade/levels=(-1.8, 1, .1)/palette=cmwyk_work TEMP_JASO[l=60] - TEMP_JASO[l=49:59@ave]\
+shade/levels=(-.7, 1, .05)//palette=cmwyk_work TEMP_JASO[l=60] - TEMP_JASO[l=49:59@ave]\
+go land\
+\
+quit}
